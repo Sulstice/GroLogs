@@ -5,6 +5,6 @@
 #
 # ----------------------------
 
-from logreader.logreader import LogReader
+from grologs.grologs import GroLogs
 
-name='LogReader'
+name='grologs'

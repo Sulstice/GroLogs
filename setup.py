@@ -25,7 +25,7 @@ with open('requirements.txt') as f:
 if os.path.exists('README.md'):
     long_description = open('README.md').read()
 else:
-    long_description = 'LogReader- A quick utility tool for reading log files'
+    long_description = 'GroLogs - A log reader for GROMACS log files'
 
 TEST_REQUIREMENTS = [
     'pytest',
@@ -35,9 +35,9 @@ TEST_REQUIREMENTS = [
 # exec
 # ----
 setup(
-    name="logreader",
-    version="0.0.1",
-    packages=['logreader'],
+    name="grologs",
+    version="0.0.2",
+    packages=['grologs'],
     license='MIT',
     author="Suliman Sharif",
     author_email="sharifsuliman1@gmail.com",

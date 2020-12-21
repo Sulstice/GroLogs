@@ -1,23 +1,27 @@
 # Authentication to Apollo
 
-class LogReader(object):
+class GroLogs(object):
 
     __version__ = '0.0.1'
 
-    def __init__(self, target_directory, target_log):
+    def __init__(self, target_directory, target_log, username = None, hostname = None):
 
         '''
 
         Initialize to find the target logs and readers
 
         '''
-        self.user, self.hostname = self._read_authentication()
+
+        if username == None and hostname == None:
+            self.user, self.hostname = self._read_authentication()
+        else:
+            self.user = username
+            self.hostname = hostname
 
         self.target_directory = target_directory
         self.target_log = target_log
         self.timings = {}
         self._read_loggers()
-
 
     def _read_authentication(self):
 
@@ -71,6 +75,10 @@ class LogReader(object):
 
                 stdout_stream = portal.run('tail -n 13 ' + file_path + '', hide=True)
                 stdout = stdout_stream.stdout.strip().split('\n')[0].split('vol')[0].strip().split(' ')[-1]
+
+                if str(stdout) == '0.0':
+                    stdout = 'Completed'
+
                 self.timings[file_path] = stdout
 
     def generate_table(self):
@@ -97,3 +105,4 @@ class LogReader(object):
             table.append_row(row)
 
         print(table)
+
